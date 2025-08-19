@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .weather-card {
+      max-width: 400px;
+      margin: 30px auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      padding: 20px;
+      background: #fff;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    .weather-icon {
+      width: 100px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="container text-center py-5">
+    <h1 class="mb-4">🌤 Weather Dashboard</h1>
+    <form method="POST" class="d-flex justify-content-center mb-4">
+      <input type="text" name="city" class="form-control w-50 me-2" placeholder="Enter city (e.g. Jakarta)" required>
+      <button type="submit" class="btn btn-primary">Get Weather</button>
+    </form>
+
+    {% if error %}
+      <div class="alert alert-danger w-50 mx-auto">{{ error }}</div>
+    {% endif %}
+
+    {% if weather %}
+    <div class="weather-card text-center">
+      <h2>{{ weather.city }}</h2>
+      <img class="weather-icon" src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="weather icon">
+      <p><strong>🌡 Temperature:</strong> {{ weather.temperature }}°C</p>
+      <p><strong>🌥 Description:</strong> {{ weather.description }}</p>
+      <p><strong>💧 Humidity:</strong> {{ weather.humidity }}%</p>
+      <p><strong>💨 Wind Speed:</strong> {{ weather.wind_speed }} m/s</p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
