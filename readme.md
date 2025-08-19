@@ -43,8 +43,3 @@ weather-app/
     http://127.0.0.1:5000/
 
 
-📚 Tech Stack
-Python (Flask)
-HTML, CSS
-OpenWeather API
-
